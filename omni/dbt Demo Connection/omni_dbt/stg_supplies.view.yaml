@@ -13,6 +13,7 @@ dimensions:
     sql: '"SUPPLY_UUID"'
     #This description was pulled from dbt.
     description: The unique key of our supplies per cost.
+    primary_key: true
 
   supply_id:
     sql: '"SUPPLY_ID"'

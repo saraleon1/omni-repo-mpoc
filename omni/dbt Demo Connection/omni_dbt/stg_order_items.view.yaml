@@ -12,6 +12,7 @@ dimensions:
     format: ID
     #This description was pulled from dbt.
     description: The unique key for each order item.
+    primary_key: true
 
   order_id:
     sql: '"ORDER_ID"'
