@@ -8,13 +8,13 @@ joins:
 
 views:
   omni_dbt__stg_orders:
-    label: orders
+    label: Orders
 
   omni_dbt__stg_products:
-    label: products
+    label: Products
 
   omni_dbt__stg_supplies:
-    label: supplies
+    label: Supplies
 
   omni_dbt__stg_order_items:
-    label: order_items
+    label: Order Items
