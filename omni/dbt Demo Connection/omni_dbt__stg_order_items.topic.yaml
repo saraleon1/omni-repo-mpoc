@@ -1,0 +1,7 @@
+base_view: omni_dbt__stg_order_items
+label: dbt Jaffle Shop Order Items
+
+joins:
+  omni_dbt__stg_orders: {}
+  omni_dbt__stg_products: {}
+  omni_dbt__stg_supplies: {}
