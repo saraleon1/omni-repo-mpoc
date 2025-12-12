@@ -1,0 +1,25 @@
+# Reference this view as omni_dbt__fct_customers
+schema_label: ""
+
+schema: omni_dbt
+table_name: FCT_CUSTOMERS
+
+dimensions:
+  customer_name:
+    sql: '"CUSTOMER_NAME"'
+
+  ordered_at_date_min:
+    sql: '"ORDERED_AT_DATE_MIN"'
+
+  ordered_at_date_max:
+    sql: '"ORDERED_AT_DATE_MAX"'
+
+  order_id_count_distinct:
+    sql: '"ORDER_ID_COUNT_DISTINCT"'
+
+  order_total_sum:
+    sql: '"ORDER_TOTAL_SUM"'
+
+measures:
+  count:
+    aggregate_type: count

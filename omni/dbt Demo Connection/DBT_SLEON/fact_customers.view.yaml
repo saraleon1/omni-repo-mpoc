@@ -1,0 +1,36 @@
+# Reference this view as dbt_sleon__fact_customers
+schema: DBT_SLEON
+table_name: FACT_CUSTOMERS
+
+dimensions:
+  customer_id:
+    sql: '"CUSTOMER_ID"'
+    format: ID
+
+  customer_name:
+    sql: '"CUSTOMER_NAME"'
+
+  count_lifetime_orders:
+    sql: '"COUNT_LIFETIME_ORDERS"'
+
+  first_ordered_at:
+    sql: '"FIRST_ORDERED_AT"'
+
+  last_ordered_at:
+    sql: '"LAST_ORDERED_AT"'
+
+  lifetime_spend_pretax:
+    sql: '"LIFETIME_SPEND_PRETAX"'
+
+  lifetime_tax_paid:
+    sql: '"LIFETIME_TAX_PAID"'
+
+  lifetime_spend:
+    sql: '"LIFETIME_SPEND"'
+
+  customer_type:
+    sql: '"CUSTOMER_TYPE"'
+
+measures:
+  count:
+    aggregate_type: count

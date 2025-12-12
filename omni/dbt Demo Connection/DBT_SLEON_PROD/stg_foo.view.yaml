@@ -1,0 +1,10 @@
+# Reference this view as dbt_sleon_prod__stg_foo
+schema: DBT_SLEON_PROD
+table_name: STG_FOO
+
+dimensions:
+  mycol: {}
+
+measures:
+  count:
+    aggregate_type: count

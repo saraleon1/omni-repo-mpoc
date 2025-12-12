@@ -1,0 +1,12 @@
+# Reference this view as omni_dbt__stg_foo
+schema_label: ""
+
+schema: omni_dbt
+table_name: STG_FOO
+
+dimensions:
+  mycol: {}
+
+measures:
+  count:
+    aggregate_type: count

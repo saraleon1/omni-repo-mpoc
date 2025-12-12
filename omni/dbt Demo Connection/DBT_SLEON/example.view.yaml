@@ -1,0 +1,13 @@
+# Reference this view as dbt_sleon__example
+schema: DBT_SLEON
+table_name: EXAMPLE
+
+dimensions:
+  id:
+    sql: '"ID"'
+    format: ID
+    primary_key: true
+
+measures:
+  count:
+    aggregate_type: count
