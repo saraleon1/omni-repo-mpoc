@@ -43,9 +43,35 @@ dimensions:
   ordered_at:
     sql: '"ORDERED_AT"'
 
+  order_total_range:
+    sql: |
+      CASE
+        WHEN ${omni_dbt__stg_orders.order_total} < 5 THEN '$0-5'
+        WHEN ${omni_dbt__stg_orders.order_total} >= 5 AND ${omni_dbt__stg_orders.order_total} < 10 THEN '$5-10'
+        WHEN ${omni_dbt__stg_orders.order_total} >= 10 AND ${omni_dbt__stg_orders.order_total} < 15 THEN '$10-15'
+        WHEN ${omni_dbt__stg_orders.order_total} >= 15 AND ${omni_dbt__stg_orders.order_total} < 20 THEN '$15-20'
+        WHEN ${omni_dbt__stg_orders.order_total} >= 20 AND ${omni_dbt__stg_orders.order_total} < 25 THEN '$20-25'
+        WHEN ${omni_dbt__stg_orders.order_total} >= 25 AND ${omni_dbt__stg_orders.order_total} < 30 THEN '$25-30'
+        WHEN ${omni_dbt__stg_orders.order_total} >= 30 THEN '$30+'
+        ELSE 'Unknown'
+      END
+
 measures:
   count:
     aggregate_type: count
+
+  total_revenue:
+    sql: ${omni_dbt__stg_orders.order_total}
+    label: Total Revenue
+    format: USDCURRENCY_2
+    aggregate_type: sum
+
+  average_order_value:
+    sql: CASE WHEN ${omni_dbt__stg_orders.count} = 0 THEN NULL ELSE
+      COALESCE(${omni_dbt__stg_orders.total_revenue}, 0) /
+      ${omni_dbt__stg_orders.count} END
+    label: Average Order Value
+    format: USDCURRENCY_2
 
 #The info below was pulled from your dbt repository and is read-only.
 dbt:

@@ -56,6 +56,24 @@ dimensions:
       0 THEN true ELSE false END
     label: Is Drink Order
 
+  order_category:
+    sql: |
+      CASE 
+        WHEN ${omni_dbt__stg_order_items.is_drink_order} = TRUE AND ${omni_dbt__stg_order_items.food_order_flag} = TRUE THEN 'Both Food and Drink'
+        WHEN ${omni_dbt__stg_order_items.food_order_flag} = TRUE AND ${omni_dbt__stg_order_items.is_drink_order} = FALSE THEN 'Food Only'
+        WHEN ${omni_dbt__stg_order_items.is_drink_order} = TRUE AND ${omni_dbt__stg_order_items.food_order_flag} = FALSE THEN 'Drink Only'
+        ELSE 'Other'
+      END
+
+measures:
+  count:
+    label: Count of Order Items
+    aggregate_type: count
+
+  distinct_order_count:
+    sql: ${omni_dbt__stg_order_items.order_id}
+    aggregate_type: count_distinct
+
 #The info below was pulled from your dbt repository and is read-only.
 dbt:
   name: stg_order_items
