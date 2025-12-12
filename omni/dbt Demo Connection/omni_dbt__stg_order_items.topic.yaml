@@ -5,3 +5,16 @@ joins:
   omni_dbt__stg_orders: {}
   omni_dbt__stg_products: {}
   omni_dbt__stg_supplies: {}
+
+views:
+  omni_dbt__stg_orders:
+    label: orders
+
+  omni_dbt__stg_products:
+    label: products
+
+  omni_dbt__stg_supplies:
+    label: supplies
+
+  omni_dbt__stg_order_items:
+    label: order_items
