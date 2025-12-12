@@ -24,9 +24,37 @@ dimensions:
     sql: '"PRODUCT_ID"'
     format: ID
 
-measures:
-  count:
-    aggregate_type: count
+  count_drink_items_in_order_level_of_detail:
+    sql: ${omni_dbt__stg_order_items.product_id}
+    label: Count Drink Items in Order
+    level_of_detail:
+      aggregate_type: count_distinct
+      fixed: [ omni_dbt__stg_order_items.order_id ]
+      filters:
+        omni_dbt__stg_products.is_drink_item:
+          is: true
+
+  count_food_items_in_order_level_of_detail:
+    sql: ${omni_dbt__stg_order_items.product_id}
+    label: Count Food Items in Order
+    level_of_detail:
+      aggregate_type: count_distinct
+      fixed: [ omni_dbt__stg_order_items.order_id ]
+      filters:
+        omni_dbt__stg_products.is_drink_item:
+          is: false
+
+  food_order_flag:
+    sql: CASE WHEN
+      ${omni_dbt__stg_order_items.count_food_items_in_order_level_of_detail} > 0
+      THEN true ELSE false END
+    label: Is Food Order
+
+  is_drink_order:
+    sql: CASE WHEN
+      ${omni_dbt__stg_order_items.count_drink_items_in_order_level_of_detail} >
+      0 THEN true ELSE false END
+    label: Is Drink Order
 
 #The info below was pulled from your dbt repository and is read-only.
 dbt:
