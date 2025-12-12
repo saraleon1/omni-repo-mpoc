@@ -13,6 +13,7 @@ dimensions:
     format: ID
     #This description was pulled from dbt.
     description: The unique key for each location.
+    primary_key: true
 
   location_name:
     sql: '"LOCATION_NAME"'

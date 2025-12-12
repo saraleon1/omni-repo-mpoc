@@ -13,6 +13,7 @@ dimensions:
     format: ID
     #This description was pulled from dbt.
     description: The unique key for each customer.
+    primary_key: true
 
   customer_name:
     sql: '"CUSTOMER_NAME"'

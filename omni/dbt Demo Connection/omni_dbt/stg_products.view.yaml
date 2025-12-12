@@ -13,6 +13,7 @@ dimensions:
     format: ID
     #This description was pulled from dbt.
     description: The unique key for each product.
+    primary_key: true
 
   product_name:
     sql: '"PRODUCT_NAME"'
